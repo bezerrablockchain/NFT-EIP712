@@ -22,7 +22,7 @@ async function main() {
     region: "us-east-1"
   }
   const config:KmsEthersSignerConfig = {
-    keyId: "0e454c9f-34a2-4d22-8684-5d787e358886",
+    keyId: "USE_YOUR-KEY-ID",
     kmsClientConfig: configRegion
   }
 
@@ -40,11 +40,11 @@ async function main() {
   console.log(await signer.getAddress());
 
   const LCollection = await ethers.getContractFactory("LCollection", signer);
-  const LCollection = await LCollection.deploy(name, symbol, maxNftSupply, _nftPrice, saleStart, provenanceHash, daysUntilReveal);
+  const LmCollection = await LCollection.deploy(name, symbol, maxNftSupply, _nftPrice, saleStart, provenanceHash, daysUntilReveal);
 
-  await LCollection.deployed();
+  await LmCollection.deployed();
 
-  console.log("L deployed to:", LCollection.address);
+  console.log("L deployed to:", LmCollection.address);
 
   console.log("⏰ Waiting confirmations");
   await delay(240000);
@@ -52,7 +52,7 @@ async function main() {
   console.log("🪄  Verifying contracts");
 
   await run("verify:verify", {
-    address: LCollection.address,
+    address: LmCollection.address,
     constructorArguments:
       [
         name,

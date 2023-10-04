@@ -26,11 +26,11 @@ async function main() {
   const feePercentage = 275; //means 2.75
 
   const LCollection = await ethers.getContractFactory("LCollection");
-  const LCollection = await LCollection.deploy(name, symbol, maxNftSupply, _nftPrice, admin, feeAddress, feePercentage);
+  const LmCollection = await LCollection.deploy(name, symbol, maxNftSupply, _nftPrice, admin, feeAddress, feePercentage);
 
-  await LCollection.deployed();
+  await LmCollection.deployed();
 
-  console.log("L deployed to:", LCollection.address);
+  console.log("L deployed to:", LmCollection.address);
   
   console.log("⏰ Waiting confirmations 1min...");
   await delay(60000);
@@ -38,7 +38,7 @@ async function main() {
   console.log("🪄  Verifying contracts");
 
   await run("verify:verify", {
-    address: LCollection.address,
+    address: LmCollection.address,
     constructorArguments:
       [
         name, 
